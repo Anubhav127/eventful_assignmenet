@@ -1,44 +1,47 @@
 export const categories = [
   'Singers',
-  'Dancers', 
-  'Speakers',
-  'DJs',
-  'Musicians',
-  'Comedians',
+  'Dancers',
+  'Motivational Speakers',
+  'Stand-up Comedians',
+  'Folk Artists',
+  'Instrumentalists',
   'Magicians',
-  'Bands'
+  'Bands',
+  'Mimicry Artists',
+  'Anchors/Hosts'
 ];
 
 export const languages = [
-  'English',
-  'Spanish',
-  'French',
-  'German',
-  'Italian',
-  'Portuguese',
-  'Mandarin',
   'Hindi',
-  'Arabic',
-  'Japanese'
+  'English',
+  'Bengali',
+  'Tamil',
+  'Telugu',
+  'Kannada',
+  'Malayalam',
+  'Marathi',
+  'Punjabi',
+  'Gujarati',
+  'Urdu'
 ];
 
 export const feeRanges = [
-  '$500 - $1,000',
-  '$1,000 - $2,500',
-  '$2,500 - $5,000',
-  '$5,000 - $10,000',
-  '$10,000+'
+  '₹5,000 - ₹10,000',
+  '₹10,000 - ₹25,000',
+  '₹25,000 - ₹50,000',
+  '₹50,000 - ₹1,00,000',
+  '₹1,00,000+'
 ];
 
 export const locations = [
-  'New York, NY',
-  'Los Angeles, CA',
-  'Chicago, IL',
-  'Houston, TX',
-  'Miami, FL',
-  'San Francisco, CA',
-  'Las Vegas, NV',
-  'Austin, TX',
-  'Nashville, TN',
-  'Atlanta, GA'
+  'Delhi',
+  'Mumbai',
+  'Bengaluru',
+  'Hyderabad',
+  'Chennai',
+  'Kolkata',
+  'Ahmedabad',
+  'Pune',
+  'Jaipur',
+  'Lucknow'
 ];
