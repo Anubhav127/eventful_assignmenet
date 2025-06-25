@@ -3,7 +3,7 @@ import CategorySection from "@/components/CategorySection";
 
 export default function Home() {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-black text-white">
       <main>
         <HeroSection />
         <CategorySection />

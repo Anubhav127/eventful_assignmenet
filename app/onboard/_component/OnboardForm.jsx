@@ -103,58 +103,23 @@ const OnboardForm = () => {
     }
 
     return (
-        <div className="max-w-4xl mx-auto">
-            <div className="mb-8">
-                <div className="flex items-center justify-between">
-                {steps.map((step, index) => {
-                    const StepIcon = step.icon;
-                    const isCompleted = currentStep > step.id;
-                    const isCurrent = currentStep === step.id;
-                    
-                    return (
-                    <div key={step.id} className="flex items-center">
-                        <div className={`flex items-center justify-center w-10 h-10 rounded-full border-2 ${
-                        isCompleted 
-                            ? 'bg-green-500 border-green-500 text-white' 
-                            : isCurrent 
-                            ? 'bg-purple-600 border-purple-600 text-white' 
-                            : 'bg-white border-gray-300 text-gray-400'
-                        }`}>
-                        {isCompleted ? (
-                            <CheckCircle className="h-5 w-5" />
-                        ) : (
-                            <StepIcon className="h-5 w-5" />
-                        )}
-                        </div>
-                        <div className="ml-3 hidden sm:block">
-                        <div className={`text-sm font-medium ${
-                            isCompleted || isCurrent ? 'text-gray-900' : 'text-gray-400'
-                        }`}>
-                            {step.name}
-                        </div>
-                        </div>
-                        {index < steps.length - 1 && (
-                        <div className={`hidden sm:block w-16 h-0.5 ml-4 ${
-                            isCompleted ? 'bg-green-500' : 'bg-gray-300'
-                        }`} />
-                        )}
-                    </div>
-                    );
-                })}
-                </div>
-            </div>
-
-            <Card>
-                <CardHeader>
-                    <CardTitle className="flex items-center">
-                        {(() => {
-                        const StepIcon = steps[currentStep - 1].icon;
-                        return <StepIcon className="h-5 w-5 mr-2" />;
-                        })()}
-                        {steps[currentStep - 1].name}
-                    </CardTitle>
-                </CardHeader>
-                <CardContent>
+        <div className="max-w-2xl mx-auto">
+      {/* Stepper */}
+      <div className="flex items-center justify-between mb-8">
+        {steps.map((step) => (
+          <div key={step.id} className={`flex flex-col items-center flex-1 ${currentStep === step.id ? 'text-purple-400' : 'text-neutral-400'}`}> 
+            <step.icon className={`h-6 w-6 mb-1 ${currentStep === step.id ? 'text-purple-400' : 'text-neutral-600'}`} />
+            <span className="text-xs font-medium">{step.name}</span>
+            {step.id !== steps.length && <div className="h-1 w-full bg-neutral-800 mt-2" />}
+          </div>
+        ))}
+      </div>
+      {/* Form Card */}
+      <Card className="bg-neutral-900 border border-neutral-800 text-white">
+        <CardHeader>
+          <CardTitle className="text-lg">Step {currentStep} of {steps.length}</CardTitle>
+        </CardHeader>
+        <CardContent>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     
                     {currentStep === 1 && (
@@ -166,6 +131,7 @@ const OnboardForm = () => {
                                 id="name"
                                 {...register('name', { required: 'Name is required' })}
                                 placeholder="Your full name"
+                                className="bg-neutral-900 border-neutral-700 text-white"
                                 />
                                 {errors.name && (
                                 <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>
@@ -178,6 +144,7 @@ const OnboardForm = () => {
                                 type="email"
                                 {...register('email', { required: 'Email is required' })}
                                 placeholder="your@email.com"
+                                className="bg-neutral-900 border-neutral-700 text-white"
                                 />
                                 {errors.email && (
                                 <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
@@ -190,6 +157,7 @@ const OnboardForm = () => {
                             id="phone"
                             {...register('phone')}
                             placeholder="(555) 123-4567"
+                            className="bg-neutral-900 border-neutral-700 text-white"
                         />
                         </div>
                     </div>
@@ -204,6 +172,7 @@ const OnboardForm = () => {
                             {...register('bio', { required: 'Bio is required' })}
                             placeholder="Tell us about your experience, style, and what makes you unique..."
                             rows={6}
+                            className="bg-neutral-900 border-neutral-700 text-white"
                         />
                         {errors.bio && (
                             <p className="text-red-500 text-sm mt-1">{errors.bio.message}</p>
@@ -226,6 +195,7 @@ const OnboardForm = () => {
                                 id={category}
                                 checked={selectedCategories.includes(category)}
                                 onCheckedChange={(checked) => handleCategoryChange(category, checked)}
+                                className="bg-neutral-900 border-neutral-700"
                                 />
                                 <Label htmlFor={category} className="text-sm">
                                 {category}
@@ -251,6 +221,7 @@ const OnboardForm = () => {
                                 id={language}
                                 checked={selectedLanguages.includes(language)}
                                 onCheckedChange={(checked) => handleLanguageChange(language, checked)}
+                                className="bg-neutral-900 border-neutral-700"
                                 />
                                 <Label htmlFor={language} className="text-sm">
                                 {language}
@@ -265,6 +236,7 @@ const OnboardForm = () => {
                             id="location"
                             {...register('location', { required: 'Location is required' })}
                             placeholder="City, State"
+                            className="bg-neutral-900 border-neutral-700 text-white"
                         />
                         <MapPin className="absolute right-3 top-8 text-muted-foreground h-4 w-4" />
                         {errors.location && (
@@ -278,13 +250,13 @@ const OnboardForm = () => {
                     <div className="space-y-6">
                         <div>
                         <Label htmlFor="feeRange">Fee Range *</Label>
-                        <Select onValueChange={(value) => setValue('feeRange', value)}>
+                        <Select onValueChange={(value) => setValue('feeRange', value)} className="bg-neutral-900 border-neutral-700">
                             <SelectTrigger>
-                            <SelectValue placeholder="Select your fee range" />
+                            <SelectValue placeholder="Select your fee range" className="text-white" />
                             </SelectTrigger>
                             <SelectContent>
                             {feeRanges.map((range) => (
-                                <SelectItem key={range} value={range}>
+                                <SelectItem key={range} value={range} className="bg-neutral-800 text-white">
                                 {range}
                                 </SelectItem>
                             ))}
@@ -323,6 +295,7 @@ const OnboardForm = () => {
                         variant="outline"
                         onClick={prevStep}
                         disabled={currentStep === 1}
+                        className="bg-neutral-800 text-white border-neutral-700"
                     >
                         Previous
                     </Button>

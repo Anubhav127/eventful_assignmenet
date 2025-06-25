@@ -91,23 +91,23 @@ export default function ArtistsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-20">
+    <div className="min-h-screen bg-black text-white py-20">
       <main className="container mx-auto px-4">
         <div className="mb-8">
-          <h1 className="text-3xl md:text-4xl font-bold mb-4">Browse Artists</h1>
-          <p className="text-lg text-muted-foreground">
+          <h1 className="text-3xl md:text-4xl font-bold mb-4 text-white">Browse Artists</h1>
+          <p className="text-lg text-neutral-400">
             Discover talented performers for your next event
           </p>
         </div>
 
         <div className="flex flex-col lg:flex-row gap-4 mb-8">
           <div className="relative flex-1">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-neutral-500 h-4 w-4" />
             <Input
               placeholder="Search artists, categories, or keywords..."
               value={searchTerm}
               onChange={e => setSearchTerm(e.target.value)}
-              className="pl-10"
+              className="pl-10 bg-neutral-900 border border-neutral-800 text-white placeholder:text-neutral-500"
             />
           </div>
         </div>
@@ -123,7 +123,7 @@ export default function ArtistsPage() {
 
           <div className="lg:col-span-3">
             <div className="flex items-center justify-between mb-6">
-              <p className="text-muted-foreground">
+              <p className="text-neutral-400">
                 {filteredArtists.length} artist
                 {filteredArtists.length !== 1 ? 's' : ''} found
               </p>
@@ -131,11 +131,11 @@ export default function ArtistsPage() {
 
             {filteredArtists.length === 0 ? (
               <div className="text-center py-12">
-                <h3 className="text-xl font-semibold mb-2">No artists found</h3>
-                <p className="text-muted-foreground mb-4">
+                <h3 className="text-xl font-semibold mb-2 text-white">No artists found</h3>
+                <p className="text-neutral-400 mb-4">
                   Try adjusting your search criteria or filters
                 </p>
-                <Button onClick={handleClearFilters} variant="outline">
+                <Button onClick={handleClearFilters} variant="outline" className="border-neutral-700 bg-neutral-900 text-white hover:bg-neutral-800">
                   Clear Filters
                 </Button>
               </div>

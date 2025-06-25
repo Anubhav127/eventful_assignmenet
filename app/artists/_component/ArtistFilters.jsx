@@ -47,35 +47,35 @@ const ArtistFilters = ({ filters, onFiltersChange, onClearFilters }) => {
             <div className="lg:hidden">
                 <Button variant="outline" 
                 onClick={() => setIsOpen(!isOpen)}
-                className="w-full justify-between" >
+                className="w-full justify-between border-neutral-700 bg-neutral-900 text-white hover:bg-neutral-800" >
                 <div className="flex items-center">
-                    <Filter className="h-4 w-4 mr-2" />
+                    <Filter className="h-4 w-4 mr-2 text-purple-400" />
                     Filters
                     {activeFiltersCount > 0 && (
-                    <Badge className="ml-2 bg-purple-600">{activeFiltersCount}</Badge>
+                    <Badge className="ml-2 bg-purple-600 text-white">{activeFiltersCount}</Badge>
                     )}
                 </div>
                 </Button>
             </div>
 
             <div className={`space-y-4 ${isOpen ? 'block' : 'hidden lg:block'}`}>
-                <Card>
-                <CardHeader className="pb-3">
+                <Card className="bg-neutral-900 border border-neutral-800 text-white">
+                <CardHeader className="pb-3 border-b border-neutral-800">
                     <div className="flex items-center justify-between">
                     <CardTitle className="text-lg">Filters</CardTitle>
                     {activeFiltersCount > 0 && (
                         <Button variant="ghost" size="sm"
                             onClick={onClearFilters}
-                            className="text-sm" >
+                            className="text-sm text-purple-400 hover:bg-neutral-800" >
                             <X className="h-4 w-4 mr-1" />
                             Clear All
                         </Button>
                     )}
                     </div>
                 </CardHeader>
-                <CardContent className="space-y-6">
+                <CardContent className="space-y-6 pt-4">
                     <div>
-                    <h4 className="font-medium mb-3">Categories</h4>
+                    <h4 className="font-medium mb-3 text-purple-400">Categories</h4>
                     <div className="space-y-2">
                         {categories.map((category) => (
                         <div key={category} className="flex items-center space-x-2">
@@ -83,8 +83,9 @@ const ArtistFilters = ({ filters, onFiltersChange, onClearFilters }) => {
                             id={category}
                             checked={filters.categories.includes(category)}
                             onCheckedChange={(checked) => handleCategoryChange(category, checked)}
+                            className="border-neutral-700 data-[state=checked]:bg-purple-600 data-[state=checked]:border-purple-600"
                             />
-                            <label htmlFor={category} className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                            <label htmlFor={category} className="text-sm font-medium leading-none text-neutral-300">
                             {category}
                             </label>
                         </div>
@@ -93,12 +94,12 @@ const ArtistFilters = ({ filters, onFiltersChange, onClearFilters }) => {
                     </div>
 
                     <div>
-                    <h4 className="font-medium mb-3">Location</h4>
+                    <h4 className="font-medium mb-3 text-purple-400">Location</h4>
                     <Select onValueChange={handleLocationChange} value={filters.location || 'all'}>
-                        <SelectTrigger>
+                        <SelectTrigger className="border-neutral-700 bg-neutral-900 text-white">
                         <SelectValue placeholder="Select location" />
                         </SelectTrigger>
-                        <SelectContent>
+                        <SelectContent className="bg-neutral-900 border-neutral-800 text-white">
                         <SelectItem value="all">All Locations</SelectItem>
                         {locations.map((location) => (
                             <SelectItem key={location} value={location}>
@@ -110,12 +111,12 @@ const ArtistFilters = ({ filters, onFiltersChange, onClearFilters }) => {
                     </div>
 
                     <div>
-                    <h4 className="font-medium mb-3">Fee Range</h4>
+                    <h4 className="font-medium mb-3 text-purple-400">Fee Range</h4>
                     <Select onValueChange={handleFeeRangeChange} value={filters.feeRange || 'all'}>
-                        <SelectTrigger>
+                        <SelectTrigger className="border-neutral-700 bg-neutral-900 text-white">
                         <SelectValue placeholder="Select fee range" />
                         </SelectTrigger>
-                        <SelectContent>
+                        <SelectContent className="bg-neutral-900 border-neutral-800 text-white">
                         <SelectItem value="all">All Ranges</SelectItem>
                         {feeRanges.map((range) => (
                             <SelectItem key={range} value={range}>
@@ -129,14 +130,14 @@ const ArtistFilters = ({ filters, onFiltersChange, onClearFilters }) => {
                 </Card>
                 
                 {activeFiltersCount > 0 && (
-                <Card>
-                    <CardHeader className="pb-3">
+                <Card className="bg-neutral-900 border border-neutral-800 text-white">
+                    <CardHeader className="pb-3 border-b border-neutral-800">
                     <CardTitle className="text-sm">Active Filters</CardTitle>
                     </CardHeader>
-                    <CardContent>
+                    <CardContent className="pt-4">
                     <div className="flex flex-wrap gap-2">
                         {filters.categories.map((category) => (
-                        <Badge key={category} variant="secondary" className="flex items-center gap-1">
+                        <Badge key={category} variant="secondary" className="flex items-center gap-1 bg-purple-500/10 text-purple-300 border border-purple-500/20">
                             {category}
                             <X 
                             className="h-3 w-3 cursor-pointer" 
@@ -145,7 +146,7 @@ const ArtistFilters = ({ filters, onFiltersChange, onClearFilters }) => {
                         </Badge>
                         ))}
                         {filters.location && (
-                        <Badge variant="secondary" className="flex items-center gap-1">
+                        <Badge variant="secondary" className="flex items-center gap-1 bg-purple-500/10 text-purple-300 border border-purple-500/20">
                             {filters.location}
                             <X 
                             className="h-3 w-3 cursor-pointer" 
@@ -154,7 +155,7 @@ const ArtistFilters = ({ filters, onFiltersChange, onClearFilters }) => {
                         </Badge>
                         )}
                         {filters.feeRange && (
-                        <Badge variant="secondary" className="flex items-center gap-1">
+                        <Badge variant="secondary" className="flex items-center gap-1 bg-purple-500/10 text-purple-300 border border-purple-500/20">
                             {filters.feeRange}
                             <X 
                             className="h-3 w-3 cursor-pointer" 
